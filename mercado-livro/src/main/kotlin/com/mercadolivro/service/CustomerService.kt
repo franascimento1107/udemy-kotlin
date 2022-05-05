@@ -1,43 +1,41 @@
 package com.mercadolivro.service
 
 import com.mercadolivro.model.CustomerModel
+import com.mercadolivro.repository.CustomerRepository
 import org.springframework.stereotype.Service
 
 @Service
-class CustomerService {
-
-    val customers = mutableListOf<CustomerModel>()
+class CustomerService(
+    val customerRepository: CustomerRepository
+) {
 
     fun getAll(name: String?): List<CustomerModel> {
         name?.let {
-            return customers.filter { it.name.contains(name, true) }
+            return customerRepository.findByNameContaining(name)
         }
-        return customers
+        return customerRepository.findAll().toList()
     }
 
-    fun get(id: String): CustomerModel {
-        return customers.filter { it.id == id.toInt() }.first()
+    fun get(id: Int): CustomerModel {
+       return customerRepository.findById(id).get()
     }
 
     fun create(customer: CustomerModel) {
-        val id = if (customers.isEmpty()) {
-            1
-        } else {
-            customers.last().id!! + 1
-        }
-        customer.id = id
-        customers.add(customer)
+        customerRepository.save(customer)
     }
 
     fun update(customer: CustomerModel) {
-        customers.filter { it.id == customer.id }.first().let {
-            it.name = customer.name
-            it.email = customer.email
+        if (!customerRepository.existsById(customer.id!!)) {
+throw RuntimeException()
         }
+        customerRepository.save(customer)
     }
 
-    fun delete(id: String) {
-        customers.removeIf { it.id == id.toInt() }
+    fun delete(id: Int) {
+        if (!customerRepository.existsById(id)) {
+            throw RuntimeException()
+        }
+        customerRepository.deleteById(id)
     }
 
 }

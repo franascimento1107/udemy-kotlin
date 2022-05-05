@@ -21,7 +21,7 @@ class CustomerController(
 
     @GetMapping("/{id}")
     fun get(@PathVariable id: String): CustomerModel {
-        return customerService.get(id)
+        return customerService.get(id.toInt())
     }
 
     @PostMapping
@@ -39,7 +39,7 @@ class CustomerController(
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun delete(@PathVariable id: String) {
-        customerService.delete(id)
+        customerService.delete(id.toInt())
     }
 
 }
