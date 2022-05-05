@@ -5,10 +5,11 @@ import org.springframework.boot.runApplication
 import org.springframework.context.annotation.ComponentScan
 
 @SpringBootApplication
-@ComponentScan(basePackages = ["com.mercadolivro.controller"])
+@ComponentScan(basePackages = ["com.mercadolivro.controller",
+    "com.mercadolivro.model", "com.mercadolivro.service"])
 class MercadoLivroApplication
 
 fun main(args: Array<String>) {
-	println("Iniciando a aplicação")
-	runApplication<MercadoLivroApplication>(*args)
+    println("Iniciando a aplicação")
+    runApplication<MercadoLivroApplication>(*args)
 }
