@@ -23,6 +23,7 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	implementation("org.flywaydb:flyway-core")
 	implementation("org.apache.commons:commons-lang3")
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -40,5 +41,5 @@ tasks.withType<Test> {
 }
 
 application {
-	mainClassName = "com.mercadolivro.mercadolivro.MercadoLivroApplicationKt"
+	mainClassName = "com.mercadolivro.MercadoLivroApplicationKt"
 }
