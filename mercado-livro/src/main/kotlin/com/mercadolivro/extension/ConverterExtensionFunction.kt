@@ -16,9 +16,19 @@ fun PutCustomerRequest.toCustomerModel(id: Int): CustomerModel {
 }
 
 fun PostBookRequest.toBookModel(customer: CustomerModel): BookModel {
-    return BookModel(id = null, name = this.name, price = this.price, status = BookStatus.ATIVO, customer)
+    return BookModel(
+        id = null,
+        name = this.name,
+        price = this.price,
+        status = BookStatus.ATIVO,
+        customer = customer)
 }
 
-fun PutBookRequest.toBookModel(id: Int, customer: CustomerModel): BookModel {
-    return BookModel(id = id, name = this.name, price = this.price, status = BookStatus.ATIVO, customer)
+fun PutBookRequest.toBookModel(previousBook: BookModel): BookModel {
+    return BookModel(
+        id = previousBook.id,
+        name = this.name ?: previousBook.name,
+        price = this.price ?: previousBook.price,
+        status = previousBook.status,
+        customer = previousBook.customer)
 }
