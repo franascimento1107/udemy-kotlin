@@ -3,8 +3,10 @@ package com.mercadolivro.controller
 import com.mercadolivro.controller.request.PostBookRequest
 import com.mercadolivro.controller.request.PutBookRequest
 import com.mercadolivro.controller.request.PutCustomerRequest
+import com.mercadolivro.controller.response.BookResponse
 import com.mercadolivro.extension.toBookModel
 import com.mercadolivro.extension.toCustomerModel
+import com.mercadolivro.extension.toResponse
 import com.mercadolivro.model.BookModel
 import com.mercadolivro.service.BookService
 import com.mercadolivro.service.CustomerService
@@ -26,14 +28,14 @@ class BookControlller(
     }
 
     @GetMapping
-    fun findAll(): List<BookModel> = bookService.findAll()
+    fun findAll(): List<BookResponse> = bookService.findAll().map { it.toResponse() }
 
     @GetMapping("/active")
-    fun findActives(): List<BookModel> = bookService.findActives()
+    fun findActives(): List<BookResponse> = bookService.findActives().map { it.toResponse() }
 
     @GetMapping("/{id}")
-    fun getById(id: Int): BookModel {
-        return bookService.getById(id)
+    fun getById(id: Int): BookResponse {
+        return bookService.getById(id).toResponse()
     }
 
     @DeleteMapping("/{id}")

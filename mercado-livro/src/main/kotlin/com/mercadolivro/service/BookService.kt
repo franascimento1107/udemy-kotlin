@@ -42,4 +42,14 @@ class BookService(
         bookRepository.save(book)
     }
 
+    fun deleteByCustomer(customer: CustomerModel) {
+        var books = bookRepository.findByCustomer(customer)
+
+        for (book in books) {
+            book.status = BookStatus.CANCELADO
+        }
+
+        bookRepository.saveAll(books)
+    }
+
 }
