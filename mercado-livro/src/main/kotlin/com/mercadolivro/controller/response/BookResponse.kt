@@ -9,6 +9,6 @@ data class BookResponse(
     var id: Int? = null,
     var name: String,
     var price: BigDecimal,
-    var customer: CustomerModel? = null,
+    var customer: CustomerResponse? = null,
     var status: BookStatus? = null
 )

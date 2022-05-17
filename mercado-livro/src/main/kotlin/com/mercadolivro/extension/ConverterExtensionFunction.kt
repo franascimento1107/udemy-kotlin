@@ -63,7 +63,7 @@ fun BookModel.toResponse(): BookResponse {
         id = this.id,
         name = this.name,
         price = this.price,
-        customer = this.customer,
+        customer = this.customer?.toResponse(),
         status = this.status
     )
 }
