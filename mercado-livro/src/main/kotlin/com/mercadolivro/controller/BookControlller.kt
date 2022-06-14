@@ -39,8 +39,8 @@ class BookControlller(
     fun findActives(@PageableDefault(page = 0, size = 10) pageable: Pageable): Page<BookResponse> = bookService.findActives(pageable).map { it.toResponse() }
 
     @GetMapping("/{id}")
-    fun getById(id: Int): BookResponse {
-        return bookService.getById(id).toResponse()
+    fun getById(@PathVariable id: String): BookResponse {
+        return bookService.getById(id.toInt()).toResponse()
     }
 
     @DeleteMapping("/{id}")

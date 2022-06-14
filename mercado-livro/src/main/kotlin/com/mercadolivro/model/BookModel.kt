@@ -21,11 +21,11 @@ data class BookModel(
     @ManyToOne
     @JoinColumn(name = "customer_id")
     var customer: CustomerModel? = null
-) {
+    ) {
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    var status: BookStatus? = null
+        @Column(nullable = false)
+        @Enumerated(EnumType.STRING)
+        var status: BookStatus? = null
         set (value) {
             if (field == BookStatus.CANCELADO || field == BookStatus.DELETADO) {
                 throw InvalidParameterException("Não é possível alterar um livro com status ${field}")

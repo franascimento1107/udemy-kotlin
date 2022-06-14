@@ -1,9 +1,9 @@
 package com.mercadolivro.controller.response
 
-data class ErrorResponse(
+data class ErrorResponse (
     var httpCode: Int,
     var message: String,
-    var InternalCode: String,
+    var internalCode: String,
     var errors: List<FieldErrorResponse>?
 ) {
 }
