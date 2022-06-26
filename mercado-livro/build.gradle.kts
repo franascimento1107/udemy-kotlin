@@ -20,12 +20,15 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.flywaydb:flyway-core")
 	implementation("org.apache.commons:commons-lang3")
 	implementation("com.h2database:h2")
+	implementation("io.springfox:springfox-swagger2:3.0.0")
+	implementation("io.springfox:springfox-swagger-ui:3.0.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
@@ -41,5 +44,5 @@ tasks.withType<Test> {
 }
 
 application {
-	mainClassName = "com.mercadolivro.MercadoLivroApplicationKt"
+	mainClass.set("com.mercadolivro.MercadoLivroApplicationKt")
 }

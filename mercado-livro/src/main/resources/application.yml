@@ -20,3 +20,8 @@ spring:
         web-allow-others: false
   flyway:
     schemas: PUBLIC
+  jackson:
+    default-property_inclusion: non_null
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher

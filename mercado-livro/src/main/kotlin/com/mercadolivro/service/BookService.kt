@@ -1,11 +1,11 @@
 package com.mercadolivro.service
 
 import com.mercadolivro.enums.BookStatus
-import com.mercadolivro.exception.BookNotFoundException
+import com.mercadolivro.enums.Errors
+import com.mercadolivro.exception.NotFoundException
 import com.mercadolivro.model.BookModel
 import com.mercadolivro.model.CustomerModel
 import com.mercadolivro.repository.BookRepository
-import org.springframework.data.crossstore.ChangeSetPersister
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
@@ -27,7 +27,8 @@ class BookService(
     }
 
     fun getById(id: Int): BookModel {
-        return bookRepository.findById(id).orElseThrow { BookNotFoundException("Não existe este recurso!") }
+        return bookRepository.findById(id)
+            .orElseThrow { NotFoundException(Errors.ML101.message.format(id), Errors.ML101.code) }
     }
 
     fun delete(id: Int) {
